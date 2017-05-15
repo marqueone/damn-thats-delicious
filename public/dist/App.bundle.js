@@ -63,11 +63,43 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+function autoComplete(input, latitude, longitude) {
+    if (!input) {
+        return;
+    }
+
+    var dropdown = new google.maps.places.Autocomplete(input);
+    dropdown.addListener("place_changed", function () {
+        var place = dropdown.getPlace();
+
+        latitude.value = place.geometry.location.lat();
+        longitude.value = place.geometry.location.lng();
+    });
+
+    input.on("keydown", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        }
+    });
+}
+
+exports.default = autoComplete;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97,21 +129,29 @@ exports.$ = $;
 exports.$$ = $$;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(1);
+__webpack_require__(2);
 
-var _bling = __webpack_require__(0);
+var _bling = __webpack_require__(1);
+
+var _autoComplete = __webpack_require__(0);
+
+var _autoComplete2 = _interopRequireDefault(_autoComplete);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _autoComplete2.default)((0, _bling.$)("#address"), (0, _bling.$)("#latitude"), (0, _bling.$)("#longitude"));
 
 /***/ })
 /******/ ]);
