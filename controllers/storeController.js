@@ -40,7 +40,7 @@ exports.createStore = async (request, response) => {
     const store = await (new Store(request.body)).save();
 
     request.flash("success", `Successfully created ${store.name}. Care to a review`);
-    response.redirect(`/stores/${store.slug}`);
+    response.redirect(`/store/${store.slug}`);
 }; 
 
 exports.getStores = async (request, response) => {
