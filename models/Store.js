@@ -30,6 +30,7 @@ const storeSchema = new mongoose.Schema({
 		}
 	},
 	created: {type: Date, default: Date.now },
+	photo: String,
 });
 
 storeSchema.pre("save", function(next){
